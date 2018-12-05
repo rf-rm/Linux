@@ -23,3 +23,5 @@ Thời gian : 23h - 05/12/2018 -> 23h - 05/12/2018
 - Mỗi bài tập sẽ có thời gian chỉ dịnh để hoàn thành. 
 - Phải hoàn thành các bài tập cũ trước khi chuyển sang bài mới
 - Có thể tham khác các tài liệu của người khác , phải để lại đường dẫn ở cuối bài 
+
+End.
