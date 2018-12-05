@@ -1,4 +1,6 @@
 1. Bài tập
+
+
 Thời gian : 23h - 05/12/2018 -> 23h - 06/12/2018
 
 Tìm hiểu cơ bản khái niệm Linux ( lịch sử ra đời, khái niệm, đáp ứng nhu cầu gì, các bản phân phối nổi bật )
