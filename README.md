@@ -18,6 +18,7 @@ Thời gian : 23h - 05/12/2018 -> 23h - 05/12/2018
 
 ## 3. Tài liệu cá nhân
 
+- Yêu cầu sử dụng Markdown, không dẫn đường dẫn sang các bài viết có định dạng khác .
 - Mỗi người có một thư mục các nhân riêng, các tư liệu cá nhân được phép đưa lên đây.
 - Không được sao chép các tài liệu từ các nguồn khác , chỉ có thể sử dụng để tham khảo ( trừ các thuật ngữ, khái niệm ) .
 - Mỗi bài tập sẽ có thời gian chỉ dịnh để hoàn thành. 
