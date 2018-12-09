@@ -29,6 +29,7 @@ Boot loader nằm trong thư mục /boot. Một màn hình hiển thị cho phé
 
 ## 4. Linux kernel được nạp và khởi chạy
 
+
 Boot loader sẽ nạp hạt nhân và các file system RAM vào bộ nhớ hệ thống để kernel có thể sử dụng trực tiếp. Khi hạt nhận được nạp vào bộ nhớ RAM, nó ngay lập tức khởi tạo và cấu hình bộ nhớ máy tính hoặc tất cả các phần cứng được gắn vào.
 
 ## 5. Inital RAM Disk
