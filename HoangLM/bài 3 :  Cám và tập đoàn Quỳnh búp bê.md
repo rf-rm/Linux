@@ -49,16 +49,6 @@ File cấu hình runlevel /etc/inittab
 -   Runlevel 4: không sử dụng
 -   Runlevel 5: chế độ đa người dùng có giao diện đồ họa
 -   Runlevel 6: reboot hệ thống
-
-## 7. Đăng nhập vào giao diện command line
-
-Gấn cuối của quá trình khởi động, init sẽ bắt đầu một chế độ đăng nhập text mode. Nhập tên người dùng và mật khẩu để đăng nhập, và xuất hiện dấu nhắc lệnh shell.
-
-## 8. Đăng nhập với giao diện đồ họa
-
-Subsystem cuối cùng được init khởi động lên là X Window. Cung cấp giao diện đồ họa cho người dùng trên Linux.
-
-Hiện tại Linux dùng các gói sau để cung cấp giao diện dang GUI: GNOME, KDE,…
 # Cấu hình ổ đĩa:
 Trong mục other storage options có thể chọn auto configure hoặc i will configure. Nếu chọn auto => system sẽ tự phân vùng ổ đĩa còn khi chọn mục còn lại bạn sẽ phải tự phân vùng. Ở đây trong mục tự phân vùng sẽ chia ra làm 4 mục chính bao gồm : /,var,boot,swap. trong đó :
 **/boot** – các tập tin cấu hình cho quá trình khởi động hệ thống (boot configuration files)
