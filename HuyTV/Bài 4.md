@@ -27,4 +27,45 @@
   +   **Permissive**: Trong chế độ Permissive, SELinux được kích hoạt nhưng sẽ không thực thi chính sách bảo mật, chỉ cảnh báo và ghi lại các hành động. Chế độ Permissive hữu ích cho việc khắc phục sự cố SELinux
   +   **Disabled**: SELinux bị vô hiệu hóa hoặc bị tắt đi.
 - ### Trường hợp nào cần vô hiệu hóa SELinux:
-  + Việc bảo mật trên Linux là rất cần thiết, tuy nhiên có những trường hợp nó lại gây ra sự phiền phức khi bạn muốn cài một phần mềm mà phần mềm đó lại cần can thiệp sâu vào hệ thống Linux. 
+  + Việc bảo mật trên Linux là rất cần thiết, tuy nhiên có những trường hợp nó lại gây ra sự phiền phức khi bạn muốn cài một phần mềm mà phần mềm đó lại cần can thiệp sâu vào hệ thống Linux.
+## 3.Trên máy ảo CentOS :
+### 3.1 Thiết lập IP tĩnh cho card mạng : 
+
+- sử dungj lệch `nmcli d` để xem danh sách card mạng và lệnh `ip a` để xem chi tiết địa chỉ ip của những card mạng đó.
+ 
+![alt](https://i.imgur.com/tQCZdaQ.png)
+
+- Hiện tại máy đang có 3 card mạng : lo(loopback),ens33,ens34. Trong đó :
+  - Card ens33 đã được cấu hình nhân IP DHCP cấp : 192.168.59.131
+  - Card ens34 đang disconected, chúng ta sẽ cấu hình IP static cho card này.
+- thiết lập IP tĩnh cho card **ens34**, sử dụng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-ens34` :
+
+![alt](https://i.imgur.com/UxucG8Q.png)
+
+- restart lại network để lưu cấu hình bằng lệnh : `service network restart`
+- Sau khi cấu hình, xem lại trạng thái card mạng và địa chỉ ip:
+![alt](https://i.imgur.com/WOM3VrH.png)
+
+- Card ens34 đã được cấu hình IP static.
+### 3.2 Cấu hình đổi port SSH
+- Truy cập vào file cấu hình SSH : `vi /etc/ssh/sshd_config` và chỉnh sửa port thành 2020
+
+![alt](https://i.imgur.com/grBeR9D.png)
+- Sau đó tiến hành tắt SELinux và Firewall:
+`vi /etc/selinux/config` đổi giá trị SELINUX=disabled
+![alt](https://i.imgur.com/sBAzxOk.png)
+`systemctl disable firewalld
+systemctl stop firewalld`
+
+![alt](https://i.imgur.com/0eHGf2k.png)
+
+- Khởi động lại máy để cấu hình được thực thi. Việc config ssh chỉ cần khởi động lại dịch vụ ssh: `systemctl restart sshd.service` , nhưng vì cấu hình tắt SELinux nên cần khởi động lại máy , gõ lệnh : `reboot`
+### 3.3 Cấu hình ssh sử dụng keypair :
+- B1: Tạo Keypair.( nếu đã có ssh key rồi thì bảo qua bước này).
+  - gõ lệnh: `ssh-keygen`
+- B2: Copy public lên server. trên máy user:
+`cat ~/.ssh/id_rsa.pub ssh root@10.55.55.113 -p 2020 "mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys && chmod -R go= ~/ssh && cat >> ~/.ssh/authorized_keys"`
+- B3: tắt đăng nhập bằng password :
+  - `vi /etc/ssh/sshd_config`, chỉnh **PasswordAuthentication yes** thành **PasswordAuthentication no**.
+- B4: Restart dịch vụ ssh trên server centos
+- gõ lệnh : `systemctl restart sshd.service`
