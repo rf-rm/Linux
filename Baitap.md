@@ -1,8 +1,27 @@
-# 1.
 
-Thời gian : 23h - 05/12/2018 -> 23h - 06/12/2018
 
-- Tìm hiểu cơ bản khái niệm Linux ( lịch sử ra đời, khái niệm, đáp ứng nhu cầu gì, các bản phân phối nổi bật )
-- Tìm hiểu các trang liên quan đến dự án Linux ( trang chủ , opensource, report issus, conbutribue )
-- So sánh sự khác biệt giữa Linux và Windows
-- Tài liệu tham khảo : https://vinahost.vn/linux-la-gi.html
+## Giải bài tập
+
+## 1. Cấu hình cho card mạng mới
+
+- Kiểm tra card vừa mới được thêm vào - Ví dụ card ens224
+![](https://i.imgur.com/BSyPRby.png)
+
+- Khởi tạo tập tin cấu hình cho device enss224 trong `/etc/syconfig/network-scripts`
+- Đây là các tùy chọn tối thiểu để cấu hình IP static , có thể cấu hình nhiều tùy chọn thêm
+```
+DEVICE=ens224
+NAME=ens224
+TYPE=Ethernet
+IPADDR=192.168.69.131
+PREFIX=24
+GATEWAY=192.168.69.1
+ONBOOT=yes
+BOOTPROTO=static
+```
+
+- Sau đó restart dịch vụ 
+```bash
+systemctl restart network
+```
+
