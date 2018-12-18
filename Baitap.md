@@ -25,3 +25,4 @@ BOOTPROTO=static
 systemctl restart network
 ```
 
+
