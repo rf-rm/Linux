@@ -129,3 +129,59 @@
       :w! - ghi đè file (bắt buộc)
       :wq - lưu file rồi thoát
       ```
+## 3. Luồng dữ liệu và các cậu lệnh điều hướng dòng dữ liệu :
+
+### 3.1 Luồng dữ liệu
+- Các chương trình trong Linux sẽ tự động được kết nối với 3 luồng dữ liệu khi chúng được thực thi.
+  - **stdin** (standart input) : đây là luồng sẽ đưa dữ liệu vào chương trình để xử lý.
+  - **stdout** (standard output) : luồng này dùng để xuất dữ liệu ra màn hình hiển thị sau quá trình thực thi hoàn tất mà không gặp lỗi.
+  - **stderr** (standard error) : luồng này có chức năng tương tự stdout, tuy nhiên nó chỉ dùng để in các thông báo lỗi và đồng thời khi đó tín hiệu lỗi cũng được gửi tới hệ điều hành.
+- Ngoài ra, tùy theo chương trình mà luồng **stdout** sẽ được thay thế bằng tệp tin hoặc máy in ... Việc liên kết các chương trình sẽ là việc đưa dữ liệu đầu ra của chương trình trước đến thẳng đầu vào của chương trình sau mà không để dữ liệu được in ra màn hình hiển thị hoặc file.
+### 3.2 Các dạng điều hướng dòng dữ liệu
+
+#### Chuyển hướng tới file
+
+-   Là một trong 2 cách chuyển hướng đơn giản nhất, với cách này, dữ liệu đầu ra sẽ được lưu vào file thay vì in ra màn hình hiển thị.
+-   Để chuyển hướng 1 câu lệnh tới file, Linux cung cấp cho người sử dụng 2 cú pháp:  `<`  (ghi nội dung ra file từ điểm bắt đầu, nếu file đã có nội dung thì ghi đè) và  `<<`  (tương tự  `<`  nhưng thay vì ghi đè lên nội dung cũ thì sẽ ghi từ điểm kết thúc của nội dung cũ)
+-   Một vài VD:
+
+> Ghi nội dung ra file, nếu file không tồn tại thì một file mới sẽ được tạo
+
+![](https://viblo.asia/uploads/5f6d88b9-89bb-487f-8e7a-1e493abcaec5.png)
+
+> Ghi đè nội dung file cũ
+
+![](https://viblo.asia/uploads/b51344d4-6176-4410-8dc9-1107311f927e.png)
+
+> Thêm nội dung cho file cũ
+
+![](https://viblo.asia/uploads/13fae0d8-e191-4fd9-8b50-117472ef0f04.png)
+
+#### Chuyển hướng từ file
+
+-   Là cách chuyển hướng đơn giản còn lại, đi cùng với  **Chuyển hướng tới file**, cách này giống với việc đọc dữ liệu từ file và sử dụng dữ liệu đó làm đầu vào cho chương trình.
+-   Chỉ có một ký hiệu duy nhất cho cách này là  `<`
+-   VD:
+
+> Trong VD này, nội dung của file được dùng làm đầu vào của câu lệnh  `wc`, có thể thấy rõ được sự khác biệt của 2 lần thực thi là lần 1 thì đầu vào là 1 file, lần 2 thì đầu vào chỉ là nội dung của file (output của  `wc`  không còn tên file nữa)
+
+![](https://viblo.asia/uploads/57f86a5d-3a2c-4efe-a456-4b87e555d438.png)
+
+#### Chuyển hướng tới  **stderr**
+
+-   Thông thường, khi một câu lệnh gặp lỗi, thông tin lỗi sẽ hiển thị luôn lên màn hình cùng với các dữ liệu đầu ra
+-   Linux cung cấp ký hiệu  `2>`  để đưa nội dung thông báo lỗi ra file thay vì màn hình hiển thị.
+-   VD:
+
+> Cũng tương tự như  **chuyển hướng tới file**, nhưng ở đây chỉ có thông báo lỗi được đưa vào file
+
+![](https://viblo.asia/uploads/222251bf-842b-48aa-bb43-49ee27445edd.png)
+
+#### Chuyển hướng tới câu lệnh khác
+
+-   Sự chuyển hướng đặc biệt nhất, đưa đầu ra của một câu lệnh tới câu lệnh khác như đầu vào
+-   Sử dụng ký hiệu  `|`  để chuyển hướng
+-   Một vài VD:
+
+![](https://viblo.asia/uploads/eb9e8879-7cec-4ec2-916f-0b4e4880a019.png)
+
