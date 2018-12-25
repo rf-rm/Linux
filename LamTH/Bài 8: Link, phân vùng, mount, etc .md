@@ -47,7 +47,7 @@ nhập **m** để xem hướng dẫn:
   ```
  mkswap /dev/sdb1/
 
- ```
+```
  
  Định dạng /dev/sdb2 là ext4, lệnh: `mkfs.ext4 /dev/sdb2/`
  
