@@ -47,8 +47,27 @@ nhập **m** để xem hướng dẫn:
   ```
  mkswap /dev/sdb1/
 
-```
+ ```
  
  Định dạng /dev/sdb2 là ext4, lệnh: `mkfs.ext4 /dev/sdb2/`
- 
- 
+ sau đó mount vào thư mục : `mkdir /root/DATA && mount /root/DATA /dev/sdb2`
+ ok ok ok
+## 4. User, Group.
+ **User** là chỉ người dùng trong hệ thống, **group** chỉ nhóm người dùng có cùng một số đặc điểm nào đó.
+ group có thể có nhiều user, một user có thể ở trong nhiều group.
+### 4.1. Các lệnh thao tác với user.
+- Tạo user, sử dụng lệnh `useradd` để tạo user:
+- Sử dụng lệnh `passwd` để đổi pass cho user 
+- để xem và chỉnh sửa các yêu cầu về mật khẩu sử dụng lệnh `chage`.
+- xóa user : `userdel` 
+### 4.2. Các lệnh thao tác với group.
+- thêm group: `groupadd $tên-group`
+- thêm user vào group:
+    - thêm khi tạo user: `useradd -G $group $user`
+    - thêm user đã tồn tại vào group: `usermod -aG $group $user`
+- xóa group: `groupdel $group` 
+Các file lưu trữ thông tin về user và group:
+
+-   **/etc/passwd** (thông tin user)
+-   **/etc/shadow** ( thông tin password)
+-   **/etc/group** (thông tin group)
